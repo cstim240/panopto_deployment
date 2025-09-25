@@ -125,16 +125,18 @@ function Install-ADTDeployment
     $adtSession.InstallPhase = "Pre-$($adtSession.DeploymentType)"
 
     ## Show Welcome Message, close processes if specified, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt.
+    # this is a hashtable to hold the parameters, ie. key/value pair --> key = AllowDefer, value = $true
     $saiwParams = @{
         AllowDefer = $true
         DeferTimes = 3
         CheckDiskSpace = $true
         PersistPrompt = $true
     }
-    if ($adtSession.AppProcessesToClose.Count -gt 0)
+    if ($adtSession.AppProcessesToClose.Count -gt 0) # if there are processes to close, we add the key/value pair to the hashtable
     {
         $saiwParams.Add('CloseProcesses', $adtSession.AppProcessesToClose)
     }
+    # this is parameter splatting, we call Show-ADTInstallationWelcome with the parameters defined in the hashtable $saiwParams
     Show-ADTInstallationWelcome @saiwParams
 
     ## Show Progress Message (with the default message).
@@ -164,7 +166,11 @@ function Install-ADTDeployment
     }
 
     ## <Perform Installation tasks here>
-
+    #  1. Show progress message to user
+    #  2. Call Start-ADTMsiProcess to with action = 'install'
+    #   FilePath = 'panopto.msi' or whichever the msi file is called
+    #   Parameters = "PANOPTO_SERVER_URL=`"https://yourserverurl.com`" /qn /norestart"
+    #   Let PSADT handle success/failure/reboot automatically
 
     ##================================================
     ## MARK: Post-Install
