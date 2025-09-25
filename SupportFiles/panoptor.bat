@@ -1,0 +1,1 @@
+msiexec /i C:\PanoptoDeployment\panoptorecorder.msi /qn /l*v C:\Logs\panoptoInstall.log PANOPTO_SERVER=<PanoptoServerAddress>
