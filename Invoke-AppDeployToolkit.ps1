@@ -96,10 +96,10 @@ $adtSession = @{
     AppRevision = '01'
     AppSuccessExitCodes = @(0)
     AppRebootExitCodes = @(1641, 3010)
-    AppProcessesToClose = @()  # Example: @('excel', @{ Name = 'winword'; Description = 'Microsoft Word' })
+    AppProcessesToClose = @('panopto', @{Name = 'PanoptoRecorder'; Description='Panopto Recorder'})  # Example: @('excel', @{ Name = 'winword'; Description = 'Microsoft Word' })
     AppScriptVersion = '1.0.0'
-    AppScriptDate = '2025-09-07'
-    AppScriptAuthor = '<author name>'
+    AppScriptDate = '2025-09-024'
+    AppScriptAuthor = 'Tim Supan'
     RequireAdmin = $true
 
     # Install Titles (Only set here to override defaults set by the toolkit).
